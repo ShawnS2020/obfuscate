@@ -1,16 +1,34 @@
 import calculatePrimes from './calc_primes.js';
+import obfCalculatePrimes from './obf_calc_primes.js';
 
-const btn = document.getElementById('btn');
+const unobfBtn = document.getElementById('unobfBtn');
+const obfBtn = document.getElementById('obfBtn');
 
-btn.addEventListener('click', () => {
-    runTest();
+unobfBtn.addEventListener('click', () => {
+    unobfuscated();
 });
 
-function runTest() {
+obfBtn.addEventListener('click', () => {
+    obfuscated();
+});
+
+function unobfuscated() {
   const startTime = performance.now();
   // Adjust this limit to preference.
-  const limit = 10000;
+  const limit = 1000000;
   const primes = calculatePrimes(limit);
+  const endTime = performance.now();
+  
+  const duration = endTime - startTime;
+  console.log(`Calculation took ${duration} milliseconds.`);
+  console.log(`Found ${primes.length} prime numbers.`);
+}
+
+function obfuscated() {
+  const startTime = performance.now();
+  // Adjust this limit to preference.
+  const limit = 1000000;
+  const primes = obfCalculatePrimes(limit);
   const endTime = performance.now();
   
   const duration = endTime - startTime;
