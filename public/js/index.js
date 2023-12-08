@@ -1,4 +1,5 @@
 import calculatePrimes from './calc_primes.js';
+import {PythonShell} from 'python-shell';
 
 const btn = document.getElementById('btn');
 
@@ -17,3 +18,12 @@ function runTest() {
   console.log(`Calculation took ${duration} milliseconds.`);
   console.log(`Found ${primes.length} prime numbers.`);
 }
+
+PythonShell.run(
+  'javascriptpy.py',
+  null,
+  function(err) {
+    if (err) throw err;
+    console.log('finished');
+  }
+)
